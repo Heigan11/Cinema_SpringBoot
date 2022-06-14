@@ -32,13 +32,6 @@ public class CinemaSpringConfig implements WebMvcConfigurer {
         return freeMarkerConfigurer;
     }
 
-//    @Bean(name = "multipartResolver")
-//    public CommonsMultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(1000000);
-//        return multipartResolver;
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
