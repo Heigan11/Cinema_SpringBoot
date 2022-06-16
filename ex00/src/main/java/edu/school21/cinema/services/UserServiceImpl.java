@@ -1,7 +1,7 @@
 package edu.school21.cinema.services;
 
 import edu.school21.cinema.models.User;
-import edu.school21.cinema.repositories.UserRepository;
+import edu.school21.cinema.repositories.UserRepositoryOld;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryOld userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override

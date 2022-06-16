@@ -4,6 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+//import static edu.school21.cinema.models.Role.USER;
+//import static edu.school21.cinema.models.Status.ACTIVE;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,4 +30,17 @@ public class User {
 
     @Column(name = "avatar_id")
     private Long avatarId;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
+//    public User(){
+//        this.role = USER;
+//        this.status = ACTIVE;
+//    }
 }
