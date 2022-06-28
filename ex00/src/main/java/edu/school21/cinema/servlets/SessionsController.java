@@ -50,7 +50,7 @@ public class SessionsController {
     public String addSession(@ModelAttribute("date") String date,
                              @ModelAttribute("cost") int cost,
                              @ModelAttribute("movie") Long movie_id,
-                             @ModelAttribute("hall") int hall_id) {
+                             @ModelAttribute("hall") Long hall_id) {
 
         LocalDateTime dateTime = LocalDateTime.parse(date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

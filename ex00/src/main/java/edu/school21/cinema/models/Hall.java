@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Hall {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "seats")
     private int seats;

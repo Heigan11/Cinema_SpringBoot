@@ -28,7 +28,7 @@ public class HallsController {
     }
 
     @GetMapping("/admin/panel/halls/delete/{id}")
-    public String deleteHall(@PathVariable("id") int id) {
+    public String deleteHall(@PathVariable("id") Long id) {
         hallService.removeHall(id);
         return "redirect:/admin/panel/halls";
     }

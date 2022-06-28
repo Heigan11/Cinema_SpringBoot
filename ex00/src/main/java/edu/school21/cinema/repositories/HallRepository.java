@@ -1,18 +1,25 @@
 package edu.school21.cinema.repositories;
 
 import edu.school21.cinema.models.Hall;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface HallRepository {
-
-    void saveHall(Hall hall);
-
-    void removeHall(int id);
-
-    Hall getHallById(int id);
-
-    List<Hall> listHalls();
+@Transactional
+public interface HallRepository extends JpaRepository<Hall, Long> {
+    void removeHallById(Long id);
+    Hall findHallById(Long id);
 }
+
+//@Repository
+//public interface HallRepository {
+//
+//    void saveHall(Hall hall);
+//
+//    void removeHall(int id);
+//
+//    Hall getHallById(int id);
+//
+//    List<Hall> listHalls();
+//}
