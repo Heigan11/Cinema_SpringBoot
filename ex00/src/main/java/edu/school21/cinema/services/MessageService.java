@@ -1,18 +1,27 @@
 package edu.school21.cinema.services;
 
 import edu.school21.cinema.models.Message;
+import edu.school21.cinema.repositories.MessageRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
-public interface MessageService {
+@Service
+@AllArgsConstructor
+public class MessageService {
 
-    void saveMessage(Message message);
+    private final MessageRepository messageRepository;
 
-    void removeMessage(Long id);
+    public void saveMessage(Message message) {
+        messageRepository.saveAndFlush(message);
+    }
 
-    Message getMessageById(Long id);
-
-    List<Message> listMessages();
-
-    List<Message> getChatHistory(Long id);
+    public List<Message> getChatHistory(Long id) {
+        List<Message> messageList = messageRepository.findFirst10MessageByMovieIdOrderByIdDesc(id);
+        Collections.reverse(messageList);
+        return messageList;
+    }
 }

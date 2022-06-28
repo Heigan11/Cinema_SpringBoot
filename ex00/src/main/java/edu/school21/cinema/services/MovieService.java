@@ -1,16 +1,32 @@
 package edu.school21.cinema.services;
 
 import edu.school21.cinema.models.Movie;
+import edu.school21.cinema.repositories.MovieRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface MovieService {
+@Service
+@AllArgsConstructor
+public class MovieService {
 
-    void saveMovie(Movie movie);
+    private final MovieRepository movieRepository;
 
-    void removeMovie(Long id);
 
-    Movie getMovieById(Long id);
+    public void saveMovie(Movie movie) {
+        movieRepository.saveAndFlush(movie);
+    }
 
-    List<Movie> findAllMovies();
+    public void removeMovie(Long id) {
+        movieRepository.deleteMovieById(id);
+    }
+
+    public Movie getMovieById(Long id) {
+        return movieRepository.findMovieById(id);
+    }
+
+    public List<Movie> findAllMovies() {
+        return movieRepository.findAll();
+    }
 }

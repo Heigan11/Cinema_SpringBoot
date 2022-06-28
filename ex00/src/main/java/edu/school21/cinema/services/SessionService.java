@@ -1,20 +1,52 @@
 package edu.school21.cinema.services;
 
 import edu.school21.cinema.models.Session;
+import edu.school21.cinema.repositories.SessionRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface SessionService {
+@Service
+@AllArgsConstructor
+public class SessionService {
 
-    void addSession(Session session);
+    private final SessionRepository sessionRepository;
 
-    void updateSession(Session session);
 
-    void removeSession(Long id);
+    public void addSession(Session session) {
+        sessionRepository.saveAndFlush(session);
+    }
 
-    Session getSessionById(Long id);
 
-    List<Session> listSessions();
+    public void updateSession(Session session) {
+        sessionRepository.saveAndFlush(session);
+    }
 
-    List<Session> getSessionByFilm(String filmName);
+    public void removeSession(Long id) {
+        sessionRepository.deleteById(id);
+    }
+
+    public Session getSessionById(Long id) {
+        return sessionRepository.findSessionById(id);
+    }
+
+
+    public List<Session> listSessions() {
+        return sessionRepository.findAll();
+    }
+
+    public List<Session> getSessionByFilm(String filmName) {
+        List<Session> sessionList = sessionRepository.findAll();
+        List<Session> foundedSessionList = new ArrayList<>();
+        for (Session session : sessionList) {
+            String title = session.getMovie().getTitle();
+            if (title.toLowerCase().contains(filmName.toLowerCase()))
+                foundedSessionList.add(session);
+        }
+        return foundedSessionList;
+    }
 }
+

@@ -11,15 +11,3 @@ public interface HallRepository extends JpaRepository<Hall, Long> {
     void removeHallById(Long id);
     Hall findHallById(Long id);
 }
-
-//@Repository
-//public interface HallRepository {
-//
-//    void saveHall(Hall hall);
-//
-//    void removeHall(int id);
-//
-//    Hall getHallById(int id);
-//
-//    List<Hall> listHalls();
-//}
