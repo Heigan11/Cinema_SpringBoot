@@ -2,14 +2,27 @@ package edu.school21.cinema.services;
 
 import edu.school21.cinema.models.User;
 import edu.school21.cinema.models.UserAvatar;
+import edu.school21.cinema.repositories.UserAvatarRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface ImageService {
+@Service
+@AllArgsConstructor
+public class ImageService {
 
-    List<UserAvatar> getAllUserImages(User user);
+    private final UserAvatarRepository userAvatarRepository;
 
-    UserAvatar saveImage(UserAvatar userAvatar);
+    public List<UserAvatar> getAllUserImages(User user) {
+        return userAvatarRepository.findAllByUserId(user.getId());
+    }
 
-    UserAvatar getImageByUserId(User user);
+    public UserAvatar saveImage(UserAvatar userAvatar) {
+        return userAvatarRepository.saveAndFlush(userAvatar);
+    }
+
+    public UserAvatar getImageByUserId(User user) {
+        return userAvatarRepository.findUserAvatarById(user.getAvatarId());
+    }
 }
