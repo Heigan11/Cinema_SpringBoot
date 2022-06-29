@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    void deleteMovieById(Long id);
     Movie findMovieById(Long id);
-
 }

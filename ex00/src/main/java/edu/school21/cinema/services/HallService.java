@@ -28,7 +28,7 @@ public class HallService {
     }
 
     public void removeHall(Long id) {
-        hallRepository.removeHallById(id);
+        hallRepository.deleteById(id);
     }
 
     public Hall getHallById(Long id) {

@@ -8,6 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface HallRepository extends JpaRepository<Hall, Long> {
-    void removeHallById(Long id);
     Hall findHallById(Long id);
 }
