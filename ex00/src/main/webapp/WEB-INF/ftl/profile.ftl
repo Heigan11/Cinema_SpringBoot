@@ -132,7 +132,7 @@
         <tbody>
         <#list images as img>
             <tr>
-                <td> <a href="./images/${user.id}/${img.uniqueName}" target="_blank">${img.originalName}</a></td>
+                <td> <a href="./images/avatars/${img.uniqueName}" target="_blank">${img.originalName}</a></td>
                 <td>${img.size}</td>
                 <td>${img.mimetype}</td>
                 <td>
