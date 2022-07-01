@@ -24,10 +24,12 @@ public class UserSession {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "sessionDate")
+//    @Column(name = "sessionDate")
+    @Column(name = "session_date")
     private LocalDate date;
 
-    @Column(name = "sessionTime")
+//    @Column(name = "sessionTime")
+    @Column(name = "session_time")
     private LocalTime time;
 
     @Column(name = "ip")
