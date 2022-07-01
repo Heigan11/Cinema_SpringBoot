@@ -1,4 +1,4 @@
-package edu.school21.cinema.servlets;
+package edu.school21.cinema.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
