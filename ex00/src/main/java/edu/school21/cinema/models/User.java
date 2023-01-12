@@ -26,4 +26,8 @@ public class User {
 
     @Column(name = "avatar_id")
     private Long avatarId;
+
+    @Column(name="role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
