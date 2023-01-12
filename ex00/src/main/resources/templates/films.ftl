@@ -117,6 +117,7 @@
                 </td>
                 <td>
                 <form method="post" action="/admin/panel/films/addPoster/${movie.id}" enctype="multipart/form-data">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <br>
                     <input type="file" name="file">
                     <button type="submit">Upload</button>
@@ -141,6 +142,7 @@
     </div>
     <div class="formAdd">
     <form method="post" action="/admin/panel/films" name="movie">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <p><b>Add film</b><br>
         <input title="Title" placeholder="Title" type="text" name="title" size="15" required pattern="^[0-9a-zA-Z ]+$">
         <input title="yearOfRelease" placeholder="Year of release" type="text" name="yearOfRelease" size="10" required pattern="^[0-9]+$">

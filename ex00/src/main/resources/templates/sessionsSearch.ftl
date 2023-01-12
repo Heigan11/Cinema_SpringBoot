@@ -54,6 +54,7 @@
     <div class="formAdd">
 
     <form name="filmForm">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <input title="FilmTitle" placeholder="Title" type="text" id="input" size="40" required pattern="^[0-9a-zA-Z]+$">
         <input type="button" value="Find" id="but">
     </form>

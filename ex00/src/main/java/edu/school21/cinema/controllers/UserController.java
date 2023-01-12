@@ -46,12 +46,19 @@ public class UserController {
         return "signIn";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
+        return "login";
+    }
+
     @PostMapping("/signIn/{id}")
     public String loginUser(@PathVariable("id") Long id,
                             @ModelAttribute("name") String name,
                             @ModelAttribute("password") String password,
                             HttpServletRequest req) {
+        System.out.println("hello PostMapping signIn");
         User user = userService.authorizeUser(name, password);
+
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);

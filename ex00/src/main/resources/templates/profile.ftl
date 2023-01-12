@@ -89,6 +89,7 @@
     <div style="flex: 0 0 20%; padding-right: 10px">
         <img src='/profile/image/${user.id}' width="300" class="w3-image w3-round">
         <form method="post" action="/uploadAvatar/${user.id}" enctype="multipart/form-data">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <br>
             <input type="file" name="file" class="w3-input">
             <button type="submit" class="w3-button w3-block w3-cyan w3-ripple w3-padding">Upload</button>
@@ -137,6 +138,7 @@
                 <td>${img.mimetype}</td>
                 <td>
                     <form method="post" action="setImage/${user.id}">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <div class="w3-padding" align="center">
                             <button type="submit"
                                     class="w3-button w3-block w3-cyan w3-ripple"

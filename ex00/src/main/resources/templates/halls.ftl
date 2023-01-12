@@ -102,7 +102,7 @@
                 <td>${hall.id}</td>
                 <td>${hall.seats}</td>
                 <td>
-                    <form method="post" action="/admin/panel/halls/update/${hall.id}" name="hall">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input title="Number of seats" placeholder="Seats" type="text" name="seats" size="4" required pattern="^[ 0-9]+$">
                         <button type="submit">Update</button>
                     </form>
@@ -115,6 +115,7 @@
     </div>
     <div class="formAdd">
     <form method="post" action="/admin/panel/halls" name="hall">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <p><b>Number of seats:</b><br><br>
         <input title="Number of seats" placeholder="Seats" type="text" name="seats" size="10" required pattern="^[ 0-9]+$">
         <button type="submit">Add hall</button>

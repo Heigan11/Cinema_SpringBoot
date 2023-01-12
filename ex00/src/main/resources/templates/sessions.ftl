@@ -111,6 +111,7 @@
                 <td>Hall N ${session.hall.id}, ${session.hall.seats} seats</td>
                 <td>
                     <form method="post" action="/admin/panel/sessions/update/${session.id}" name="session">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input title="Cost" placeholder="Cost" type="text" name="cost" size="4" required pattern="^[0-9]+$">
                         <button type="submit">Update</button>
                     </form>
@@ -123,6 +124,7 @@
     </div>
     <div class="formAdd">
     <form method="post" action="/admin/panel/sessions" name="session">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <p><b>Add session</b><br><br>
         <input title="Cost" placeholder="Cost" type="text" name="cost" size="10" required pattern="^[0-9]+$">
         <input title="Time" type="datetime-local" name="date" size="10" required pattern="yyyy-MM-dd, HH:mm">

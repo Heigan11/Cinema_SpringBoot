@@ -67,6 +67,7 @@
 
 <body>
 <form action="/signIn/${id}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <ul>
         <li>
             <label for="name">Name:</label>
