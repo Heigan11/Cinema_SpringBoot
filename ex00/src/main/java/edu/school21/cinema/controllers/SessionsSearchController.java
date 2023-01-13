@@ -66,8 +66,14 @@ public class SessionsSearchController {
         return "sessionInfo";
     }
 
-    @GetMapping("/sessions")
+//    @GetMapping("/sessions")
+//    public String Sessions() {
+//        return "sessionsSearch";
+//    }
+
+    @GetMapping("/session/search")
     public String Sessions() {
         return "sessionsSearch";
     }
+
 }

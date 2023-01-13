@@ -23,6 +23,12 @@ public class UserService {
     public List<User> getUserByName(String name) {
         return userRepository.findAllByName(name);
     }
+    public User getOneUserByName(String name) {
+        List<User> users = userRepository.findAllByName(name);
+        if (users == null || users.isEmpty())
+            return null;
+        return users.get(0);
+    }
 
     @Transactional(readOnly = true)
     public User authorizeUser(String name, String password) {

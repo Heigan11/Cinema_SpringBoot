@@ -28,6 +28,6 @@
 <a href="/admin/panel/halls">HALLS</a>
 <a href="/admin/panel/films">MOVIES</a>
 <a href="/admin/panel/sessions">SESSIONS</a>
-<a href="/sessions">SEARCH</a>
+<a href="/session/search">SEARCH</a>
 </body>
 </html>

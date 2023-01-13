@@ -4,8 +4,10 @@ import edu.school21.cinema.models.Movie;
 import edu.school21.cinema.models.User;
 import edu.school21.cinema.services.MessageService;
 import edu.school21.cinema.services.MovieService;
+import edu.school21.cinema.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,8 @@ public class MoviesController {
 
     private final MovieService movieService;
     private final MessageService messageService;
+    private final UserService userService;
+
 
     @GetMapping("/admin/panel/films")
     public String Movies(Model model) {
@@ -107,4 +111,22 @@ public class MoviesController {
         model.addAttribute("history", messageService.getChatHistory(id));
         return "chat";
     }
+
+    @GetMapping("/films/{id}/chat/messages")
+    public String goChatMessages(Authentication a, @PathVariable("id") Long id, Model model) throws IOException {
+        if (a == null) {
+            return "entrance";
+        }
+        User user = userService.getOneUserByName(a.getName());
+        if (user == null) {
+            return "entrance";
+        }
+        model.addAttribute("movie", movieService.getMovieById(id));
+        model.addAttribute("user", user);
+        model.addAttribute("history", messageService.getChatHistory(id));
+        return "chat";
+    }
+
+
+
 }
