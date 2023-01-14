@@ -131,12 +131,12 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest req) {
-        HttpSession session = req.getSession();
-        if (session.getAttribute("user") != null) {
-            session.removeAttribute("user");
-        }
-        return "redirect:/";
-    }
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest req) {
+//        HttpSession session = req.getSession();
+//        if (session.getAttribute("user") != null) {
+//            session.removeAttribute("user");
+//        }
+//        return "redirect:/";
+//    }
 }

@@ -153,13 +153,15 @@
         </tbody>
     </table>
 
-    <form method="get" action="logout" style="width: 60%">
+    <form method="post" action="logout" style="width: 60%">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <div class="w3-padding">
             <button type="submit" class="w3-button w3-block w3-section w3-pale-blue w3-ripple w3-padding">
                 Logout
             </button>
         </div>
     </form>
+
 </div>
 
 </body>
