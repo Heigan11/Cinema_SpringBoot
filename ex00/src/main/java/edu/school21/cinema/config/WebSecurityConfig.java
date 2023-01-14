@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
     private final CustomFailureHandler customFailureHandler;
+    private final CustomSuccessHandler customSuccessHandler;
 
 
     @Override
@@ -41,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/index")
+                .successHandler(customSuccessHandler)
+//                .defaultSuccessUrl("/index")
                 .failureHandler(customFailureHandler)
                 .and()
                 .logout()
