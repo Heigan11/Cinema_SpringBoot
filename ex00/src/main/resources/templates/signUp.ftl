@@ -55,7 +55,7 @@
 </head>
 
 <body>
-<form action="/signUp/${film_id}" method="post">
+<form action="/signUp" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <ul>
         <li>

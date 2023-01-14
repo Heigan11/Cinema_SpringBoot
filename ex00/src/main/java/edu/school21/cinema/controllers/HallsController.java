@@ -16,9 +16,14 @@ public class HallsController {
 
     private final HallService hallService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/")
+    public String entrance() {
+        return "entrance";
     }
 
     @GetMapping("/admin/panel/halls")

@@ -1,9 +1,11 @@
 package edu.school21.cinema.controllers;
 
+import edu.school21.cinema.models.Role;
 import edu.school21.cinema.models.User;
 import edu.school21.cinema.services.UserService;
 import edu.school21.cinema.services.UserSessionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,26 +26,65 @@ public class UserController {
     private final UserSessionService userSessionService;
 
 
-    @GetMapping("/signUp/{id}")
-    public String getSignUpPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("film_id", id);
+//    @GetMapping("/signUp/{id}")
+//    public String getSignUpPage(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("film_id", id);
+//        return "signUp";
+//    }
+
+    @GetMapping("/signUp")
+    public String getSignUpPage(Authentication a) {
+        if (a != null && a.getName() != null) {
+            User user = userService.getOneUserByName(a.getName());
+            if (user.getRole().equals(Role.ADMIN)){
+                return "redirect:/admin/panel/halls";
+            }
+            if (user.getRole().equals(Role.USER)){
+                return "redirect:/profile";
+            }
+        }
         return "signUp";
     }
 
-    @PostMapping("/signUp/{film_id}")
-    public String registerUser(@ModelAttribute("user") User user, @PathVariable("film_id") Long film_id) {
+//    @PostMapping("/signUp/{film_id}")
+//    public String registerUser(@ModelAttribute("user") User user, @PathVariable("film_id") Long film_id) {
+//        String tempPassword = user.getPassword();
+//        user.setPassword(passwordEncoder.encode(tempPassword));
+//        user.setAvatarId(0L);
+//        userService.saveUser(user);
+//
+//        return "redirect:/admin/panel/films";
+//    }
+
+    @PostMapping("/signUp")
+    public String registerUser(@ModelAttribute("user") User user) {
         String tempPassword = user.getPassword();
         user.setPassword(passwordEncoder.encode(tempPassword));
         user.setAvatarId(0L);
+        user.setRole(Role.USER);
         userService.saveUser(user);
 
-        return "redirect:/admin/panel/films";
+        return "redirect:/login";
     }
 
-    @GetMapping("/signIn/{id}")
-    public String getSignInPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("id", id);
-        return "signIn";
+//    @GetMapping("/signIn/{id}")
+//    public String getSignInPage(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("id", id);
+//        return "signIn";
+//    }
+
+    @GetMapping("/signIn")
+    public String getSignInPage(Authentication a, Model model) {
+        if (a != null && a.getName() != null) {
+            User user = userService.getOneUserByName(a.getName());
+            if (user.getRole().equals(Role.ADMIN)){
+                return "redirect:/admin/panel/halls";
+            }
+            if (user.getRole().equals(Role.USER)){
+                return "redirect:/profile";
+            }
+        }
+        return "login";
     }
 
     @GetMapping("/login")

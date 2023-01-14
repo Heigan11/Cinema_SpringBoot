@@ -124,13 +124,14 @@
                 </form>
                 </td>
                 <td>
-                    <#if Session.user??>
-                        <a href="/films/${movie.id}/chat">Chat</a>
-                    </#if>
-                    <#if !Session.user??>
-<#--                        <a href="/entrance">Chat</a>-->
-                        <a href="/entrance/${movie.id}">Chat</a>
-                    </#if>
+                    <a href="/films/${movie.id}/chat">Chat</a>
+<#--                    <#if Session.user??>-->
+<#--                        <a href="/films/${movie.id}/chat">Chat</a>-->
+<#--                    </#if>-->
+<#--                    <#if !Session.user??>-->
+<#--&lt;#&ndash;                        <a href="/entrance">Chat</a>&ndash;&gt;-->
+<#--                        <a href="/entrance/${movie.id}">Chat</a>-->
+<#--                    </#if>-->
                 </td>
                 <td>
                     <a href="/admin/panel/films/delete/${movie.id}">delete</a>

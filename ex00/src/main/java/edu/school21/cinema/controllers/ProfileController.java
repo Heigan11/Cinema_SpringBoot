@@ -7,6 +7,7 @@ import edu.school21.cinema.services.UserService;
 import edu.school21.cinema.services.UserSessionService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,16 +30,35 @@ public class ProfileController {
     private final UserSessionService userSessionService;
     private final ImageService imageService;
 
-    @GetMapping("/profile")
-    public String profile(Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//    @GetMapping("/profile")
+//    public String profile(Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//
+//        if (req.getSession().getAttribute("user") == null) {
+//            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+//            return "index";
+//        }
+//
+//        HttpSession session = req.getSession();
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("usersessions", userSessionService.getAllUserSession(user));
+//        model.addAttribute("user", user);
+//        model.addAttribute("image", imageService.getImageByUserId(user));
+//        model.addAttribute("images", imageService.getAllUserImages(user));
+//
+//        return "profile";
+//    }
 
-        if (req.getSession().getAttribute("user") == null) {
-            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return "index";
+    @GetMapping("/profile")
+    public String profile(Authentication a, Model model) {
+
+        if (a == null || a.getName() == null) {
+            return "entrance";
+        }
+        User user = userService.getOneUserByName(a.getName());
+        if (user == null) {
+            return "entrance";
         }
 
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
         model.addAttribute("usersessions", userSessionService.getAllUserSession(user));
         model.addAttribute("user", user);
         model.addAttribute("image", imageService.getImageByUserId(user));

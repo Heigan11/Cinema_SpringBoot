@@ -94,27 +94,27 @@ public class MoviesController {
         return "redirect:/admin/panel/films";
     }
 
-    @GetMapping("/entrance/{id}")
-    public String entrance(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("id", id);
-        return "entrance";
-    }
+//    @GetMapping("/entrance/{id}")
+//    public String entrance(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("id", id);
+//        return "entrance";
+//    }
+
+//    @GetMapping("/films/{id}/chat")
+//    public String goChat(@PathVariable("id") Long id, Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//        if (req.getSession().getAttribute("user") == null) {
+//            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+//            return "entrance";
+//        }
+//        model.addAttribute("movie", movieService.getMovieById(id));
+//        model.addAttribute("user", (User) req.getSession().getAttribute("user"));
+//        model.addAttribute("history", messageService.getChatHistory(id));
+//        return "chat";
+//    }
 
     @GetMapping("/films/{id}/chat")
-    public String goChat(@PathVariable("id") Long id, Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if (req.getSession().getAttribute("user") == null) {
-            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return "entrance";
-        }
-        model.addAttribute("movie", movieService.getMovieById(id));
-        model.addAttribute("user", (User) req.getSession().getAttribute("user"));
-        model.addAttribute("history", messageService.getChatHistory(id));
-        return "chat";
-    }
-
-    @GetMapping("/films/{id}/chat/messages")
-    public String goChatMessages(Authentication a, @PathVariable("id") Long id, Model model) throws IOException {
-        if (a == null) {
+    public String goChat(Authentication a, @PathVariable("id") Long id, Model model) {
+        if (a == null || a.getName() == null) {
             return "entrance";
         }
         User user = userService.getOneUserByName(a.getName());
@@ -127,6 +127,18 @@ public class MoviesController {
         return "chat";
     }
 
-
-
+    @GetMapping("/films/{id}/chat/messages")
+    public String goChatMessages(Authentication a, @PathVariable("id") Long id, Model model) {
+        if (a == null) {
+            return "entrance";
+        }
+        User user = userService.getOneUserByName(a.getName());
+        if (user == null) {
+            return "entrance";
+        }
+        model.addAttribute("movie", movieService.getMovieById(id));
+        model.addAttribute("user", user);
+        model.addAttribute("history", messageService.getChatHistory(id));
+        return "chat";
+    }
 }

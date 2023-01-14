@@ -25,7 +25,7 @@
 <br>
 <br>
 <br>
-<a href="/login">Login</a>
-<a href="/signUp">Register</a>
+<a href="/signIn/${id}">Login</a>
+<a href="/signUp/${id}">Register</a>
 </body>
 </html>
