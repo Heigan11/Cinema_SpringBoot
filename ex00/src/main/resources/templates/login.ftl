@@ -27,7 +27,7 @@
         label {
             /* To make sure that all labels have the same size and are properly aligned */
             display: inline-block;
-            width: 90px;
+            width: 120px;
             text-align: right;
         }
 
@@ -37,7 +37,7 @@
             font: 1em sans-serif;
 
             /* Определим размер полей */
-            width: 300px;
+            width: 250px;
             box-sizing: border-box;
 
             /* Стилизуем границы полей */
@@ -81,6 +81,10 @@
         <li>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" />
+        </li>
+        <li>
+            <label for="remember-me">Remember-me:</label>
+            <input type="checkbox" name="remember-me" id="remember-me" />
         </li>
         <li class="button">
             <button type="submit">Login</button>

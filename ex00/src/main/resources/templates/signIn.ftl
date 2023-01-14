@@ -77,6 +77,10 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" />
         </li>
+        <li>
+            <label for="remember-me">Remember</label>
+            <input type="checkbox" name="remember-me" id="remember-me"/>
+        </li>
         <li class="button">
             <button type="submit">Login</button>
         </li>
