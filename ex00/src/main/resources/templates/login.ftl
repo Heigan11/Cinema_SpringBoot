@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+<#import "/spring.ftl" as spring />
 <html>
 <head>
-    <meta charset="utf-8" />
     <title>Cinema</title>
     <style>
         form {
             /* Just to center the form on the page */
             margin: 200px auto 0;
-            width: 400px;
+            width: 450px;
             /* To see the outline of the form */
             padding: 1em;
             border: 1px solid #ccc;
@@ -66,25 +66,21 @@
 </head>
 
 <body>
+
 <form action="/login" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-
-<#--    <div><label> User Name : <input type="text" name="username"/> </label></div>-->
-<#--    <div><label> Password: <input type="password" name="password"/> </label></div>-->
-<#--    <button type="submit">Login</button>-->
-
     <ul>
         <li>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="username" />
+            <label for="name"><@spring.message "page.login.name"/></label>
+            <input type="text" id="name" name="username"/>
         </li>
         <li>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" />
+            <label for="password"><@spring.message "page.login.password"/></label>
+            <input type="password" id="password" name="password"/>
         </li>
         <li>
             <label for="remember-me">Remember-me:</label>
-            <input type="checkbox" name="remember-me" id="remember-me" />
+            <input type="checkbox" name="remember-me" id="remember-me"/>
         </li>
         <li class="button">
             <button type="submit">Login</button>
@@ -92,4 +88,10 @@
     </ul>
 </form>
 </body>
+<footer>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-top: 25px; margin-bottom: 25px">
+        <a href="/login?lang=en" style="margin-right: 15px"> <@spring.message "lang.eng"/></a>
+        <a href="/login?lang=ru"> <@spring.message "lang.ru"/></a>
+    </div>
+</footer>
 </html>

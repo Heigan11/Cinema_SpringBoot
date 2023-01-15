@@ -3,20 +3,14 @@ package edu.school21.cinema.config;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @AllArgsConstructor
@@ -35,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 //                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/signIn", "/signUp").permitAll()
+                .antMatchers("/", "/signIn", "/signUp", "/login").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -73,62 +67,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
-
-
-
-
-
-//@Configuration
-//@AllArgsConstructor
-//public class WebSecurityConfig {
-//
-//    private final PasswordEncoder passwordEncoder;
-//    private final CustomFailureHandler customFailureHandler;
-//
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                        .mvcMatchers("/").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin((form) -> form
-//                        .loginPage("/login")
-//                        .permitAll()
-////                        .usernameParameter("username")
-////                        .passwordParameter("password")
-//                        .defaultSuccessUrl("/admin/panel/halls", false)
-//                        .failureHandler(customFailureHandler)
-//                )
-//                .logout((logout) -> logout.permitAll());
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                        .username("aaa")
-//                        .password(passwordEncoder.encode("123"))
-//                        .roles("ADMIN")
-//                        .build()
-//        );
-//    }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetailsService userDetailsService = new InMemoryUserDetailsManager();
-//        UserDetails user = User.withUsername("a")
-//                .password("1")
-//                .authorities("read")
-//                .build();
-//        ((InMemoryUserDetailsManager) userDetailsService).createUser(user);
-//        return userDetailsService;
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
-//}

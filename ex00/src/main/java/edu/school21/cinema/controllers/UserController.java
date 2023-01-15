@@ -25,13 +25,6 @@ public class UserController {
     private final UserService userService;
     private final UserSessionService userSessionService;
 
-
-//    @GetMapping("/signUp/{id}")
-//    public String getSignUpPage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("film_id", id);
-//        return "signUp";
-//    }
-
     @GetMapping("/signUp")
     public String getSignUpPage(Authentication a) {
         if (a != null && a.getName() != null) {
@@ -46,16 +39,6 @@ public class UserController {
         return "signUp";
     }
 
-//    @PostMapping("/signUp/{film_id}")
-//    public String registerUser(@ModelAttribute("user") User user, @PathVariable("film_id") Long film_id) {
-//        String tempPassword = user.getPassword();
-//        user.setPassword(passwordEncoder.encode(tempPassword));
-//        user.setAvatarId(0L);
-//        userService.saveUser(user);
-//
-//        return "redirect:/admin/panel/films";
-//    }
-
     @PostMapping("/signUp")
     public String registerUser(@ModelAttribute("user") User user) {
         String tempPassword = user.getPassword();
@@ -66,12 +49,6 @@ public class UserController {
 
         return "redirect:/login";
     }
-
-//    @GetMapping("/signIn/{id}")
-//    public String getSignInPage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("id", id);
-//        return "signIn";
-//    }
 
     @GetMapping("/signIn")
     public String getSignInPage(Authentication a, Model model) {
