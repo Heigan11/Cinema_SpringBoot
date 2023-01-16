@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<#import "/spring.ftl" as spring />
 <html>
 <head>
     <meta charset="utf-8" />
@@ -70,21 +71,27 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <ul>
         <li>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" />
+            <label for="name"><@spring.message "page.login.name"/></label>
+            <input type="text" id="name" name="username"/>
         </li>
         <li>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" />
+            <label for="password"><@spring.message "page.login.password"/></label>
+            <input type="password" id="password" name="password"/>
         </li>
         <li>
-            <label for="remember-me">Remember</label>
+            <label for="remember-me"><@spring.message "page.login.remember"/></label>
             <input type="checkbox" name="remember-me" id="remember-me"/>
         </li>
         <li class="button">
-            <button type="submit">Login</button>
+            <button type="submit"><@spring.message "page.login.login"/></button>
         </li>
     </ul>
 </form>
 </body>
+<footer>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-top: 25px; margin-bottom: 25px">
+        <a href="/signIn?lang=en" style="margin-right: 15px"> <@spring.message "lang.eng"/></a>
+        <a href="/signIn?lang=ru"> <@spring.message "lang.ru"/></a>
+    </div>
+</footer>
 </html>

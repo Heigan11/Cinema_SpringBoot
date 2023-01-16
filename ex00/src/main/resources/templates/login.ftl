@@ -79,11 +79,11 @@
             <input type="password" id="password" name="password"/>
         </li>
         <li>
-            <label for="remember-me">Remember-me:</label>
+            <label for="remember-me"><@spring.message "page.login.remember"/></label>
             <input type="checkbox" name="remember-me" id="remember-me"/>
         </li>
         <li class="button">
-            <button type="submit">Login</button>
+            <button type="submit"><@spring.message "page.login.login"/></button>
         </li>
     </ul>
 </form>
