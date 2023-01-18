@@ -54,7 +54,8 @@ public class ProfileController {
         if (a == null || a.getName() == null) {
             return "entrance";
         }
-        User user = userService.getOneUserByName(a.getName());
+//        User user = userService.getOneUserByName(a.getName());
+        User user = userService.getUserByEmail(a.getName());
         if (user == null) {
             return "entrance";
         }

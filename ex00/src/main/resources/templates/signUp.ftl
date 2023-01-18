@@ -7,7 +7,7 @@
     <style>
         form {
             margin: 200px auto 0;
-            width: 450px;
+            width: 600px;
             padding: 1em;
             border: 1px solid #ccc;
             border-radius: 1em;
@@ -40,6 +40,10 @@
             border-color: #000;
         }
 
+        input::placeholder{
+            color:  red;
+        }
+
         button {
             padding: 10px 0;
             border-width: 0;
@@ -61,12 +65,49 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <ul>
         <li>
-            <label for="name"><@spring.message "page.login.name"/></label>
-            <input type="text" id="name" name="name" />
+            <label for="firstName"><@spring.message "page.login.firstName"/></label>
+            <#if error??>
+                <input type="text" id="firstName" name="firstName"
+                       placeholder="<@spring.message "errors.incorrect.firstName"/>"/>
+            <#else>
+                <input type="text" id="firstName" name="firstName"/>
+            </#if>
+        </li>
+        <li>
+            <label for="lastName"><@spring.message "page.login.lastName"/></label>
+            <#if error??>
+                <input type="text" id="lastName" name="lastName"
+                       placeholder="<@spring.message "errors.incorrect.lastName"/>"/>
+            <#else>
+                <input type="text" id="lastName" name="lastName"/>
+            </#if>
+        </li>
+        <li>
+            <label for="email"><@spring.message "page.login.email"/></label>
+            <#if error??>
+                <input type="text" id="email" name="email"
+                       placeholder="<@spring.message "errors.incorrect.email"/>"/>
+            <#else>
+                <input type="text" id="email" name="email"/>
+            </#if>
+        </li>
+        <li>
+            <label for="phoneNumber"><@spring.message "page.login.phone"/></label>
+            <#if error??>
+                <input type="text" id="phoneNumber" name="phoneNumber"
+                       placeholder="<@spring.message "errors.incorrect.phone"/>"/>
+            <#else>
+                <input type="text" id="phoneNumber" name="phoneNumber"/>
+            </#if>
         </li>
         <li>
             <label for="password"><@spring.message "page.login.password"/></label>
-            <input type="password" id="password" name="password" />
+            <#if error??>
+                <input type="text" id="password" name="password"
+                       placeholder="<@spring.message "errors.incorrect.password"/>"/>
+            <#else>
+                <input type="text" id="password" name="password"/>
+            </#if>
         </li>
         <li class="button">
             <button type="submit"><@spring.message "page.signup.register"/></button>

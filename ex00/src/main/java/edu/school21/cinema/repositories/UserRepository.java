@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findAllByName(String name);
+//    List<User> findAllByName(String name);
+    User findUserByEmail(String email);
     User findUserById(Long id);
 }

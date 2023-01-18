@@ -24,7 +24,8 @@ public class CustomSuccessHandler extends SavedRequestAwareAuthenticationSuccess
                                         HttpServletResponse res,
                                         Authentication a) throws IOException, ServletException {
         if (a != null && a.getName() != null) {
-            User user = userService.getOneUserByName(a.getName());
+//            User user = userService.getOneUserByName(a.getName());
+            User user = userService.getUserByEmail(a.getName());
             if (user != null){
                 userSessionService.saveSession(user, req.getRemoteAddr());
             }

@@ -10,14 +10,13 @@ insert into movies (title, year, restriction, description) VALUES
         'The Terminator is a 1984 American science fiction action film directed by James Cameron.'
     );
 
-INSERT INTO chat_user (avatar_id, name, password, role)
-values ('0', 'bbb',
-        '$2a$10$BEsEiXoQwpqVQmseTtprWORMl.j.XZWqT6N69Sj0qC6eA2KcSmLFS', 'USER');
+INSERT INTO chat_user (avatar_id, email, first_name, last_name, password, phone_number, role)
+values ('0', 'heigan11@gmail.com', 'Alex', 'Inkov',
+        '$2a$10$BEsEiXoQwpqVQmseTtprWORMl.j.XZWqT6N69Sj0qC6eA2KcSmLFS', '+7(985)1963953', 'ADMIN');
 
-INSERT INTO chat_user (avatar_id, name, password, role)
-values ('0', 'aaa',
-        '$2a$10$BEsEiXoQwpqVQmseTtprWORMl.j.XZWqT6N69Sj0qC6eA2KcSmLFS', 'ADMIN');
-
+INSERT INTO chat_user (avatar_id, email, first_name, last_name, password, phone_number, role)
+values ('0', 'user@gmail.com', 'Alex', 'Inkov',
+        '$2a$10$BEsEiXoQwpqVQmseTtprWORMl.j.XZWqT6N69Sj0qC6eA2KcSmLFS', '+7(985)1963953', 'USER');
 
 -- insert into springboot.users (first_name, last_name, email, phone_number, password, role, status, avatar, is_non_locked, is_non_enable, fail_attempts)
 -- VALUES ('b', 'last_name', 'ADMIN', 'phone_number', '$2a$10$BDRuCkP91uTk2KfREKCSDuzrbZN/xRbchODFdqTlKNWSjQMSUKXHq', 'ADMIN', 'CONFIRMED', null, 'true', 'true', 0);

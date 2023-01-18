@@ -98,7 +98,7 @@
 
     <div style="flex: 0 0 40%;">
         <h3>
-            ${user.name}
+            ${user.email}
         </h3>
 
         <table class="w3-table w3-bordered w3-centered w3-card">

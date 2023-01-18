@@ -67,7 +67,8 @@ public class SecurityUser implements UserDetails {
         System.out.println(user.getRole());
 
         return new org.springframework.security.core.userdetails.User(
-                user.getName(), user.getPassword(),
+//                user.getName(), user.getPassword(),
+                user.getEmail(), user.getPassword(),
                 true,
                 true,
                 true,

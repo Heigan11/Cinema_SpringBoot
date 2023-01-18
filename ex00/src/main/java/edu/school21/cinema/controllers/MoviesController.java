@@ -117,7 +117,8 @@ public class MoviesController {
         if (a == null || a.getName() == null) {
             return "entrance";
         }
-        User user = userService.getOneUserByName(a.getName());
+//        User user = userService.getOneUserByName(a.getName());
+        User user = userService.getUserByEmail(a.getName());
         if (user == null) {
             return "entrance";
         }
@@ -132,7 +133,8 @@ public class MoviesController {
         if (a == null) {
             return "entrance";
         }
-        User user = userService.getOneUserByName(a.getName());
+//        User user = userService.getOneUserByName(a.getName());
+        User user = userService.getUserByEmail(a.getName());
         if (user == null) {
             return "entrance";
         }

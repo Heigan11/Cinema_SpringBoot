@@ -20,23 +20,40 @@ public class UserService {
         userRepository.saveAndFlush(user);
     }
 
-    public List<User> getUserByName(String name) {
-        return userRepository.findAllByName(name);
-    }
-    public User getOneUserByName(String name) {
-        List<User> users = userRepository.findAllByName(name);
-        if (users == null || users.isEmpty())
-            return null;
-        return users.get(0);
+//    public List<User> getUserByName(String name) {
+//        return userRepository.findAllByName(name);
+//    }
+
+    public User getUserByEmail(String email){
+        return userRepository.findUserByEmail(email);
     }
 
+//    public User getOneUserByName(String name) {
+//        List<User> users = userRepository.findAllByName(name);
+//        if (users == null || users.isEmpty())
+//            return null;
+//        return users.get(0);
+//    }
+
+//    @Transactional(readOnly = true)
+//    public User authorizeUser(String name, String password) {
+//        if (name != null && password != null) {
+//            List<User> users = getUserByName(name);
+//            if (users != null && users.size() == 1)
+//                if (passwordEncoder.matches(password, users.get(0).getPassword())) {
+//                    return users.get(0);
+//                }
+//        }
+//        return null;
+//    }
+
     @Transactional(readOnly = true)
-    public User authorizeUser(String name, String password) {
-        if (name != null && password != null) {
-            List<User> users = getUserByName(name);
-            if (users != null && users.size() == 1)
-                if (passwordEncoder.matches(password, users.get(0).getPassword())) {
-                    return users.get(0);
+    public User authorizeUser(String email, String password) {
+        if (email != null && password != null) {
+            User user = getUserByEmail(email);
+            if (user != null)
+                if (passwordEncoder.matches(password, user.getPassword())) {
+                    return user;
                 }
         }
         return null;

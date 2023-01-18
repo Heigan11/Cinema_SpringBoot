@@ -71,8 +71,8 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <ul>
         <li>
-            <label for="name"><@spring.message "page.login.name"/></label>
-            <input type="text" id="name" name="username"/>
+            <label for="email"><@spring.message "page.login.email"/></label>
+            <input type="text" id="email" name="username"/>
         </li>
         <li>
             <label for="password"><@spring.message "page.login.password"/></label>

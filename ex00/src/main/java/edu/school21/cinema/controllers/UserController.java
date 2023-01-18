@@ -9,13 +9,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,13 +29,15 @@ public class UserController {
     private final UserSessionService userSessionService;
 
     @GetMapping("/signUp")
+//    public String getSignUpPage(@ModelAttribute("user") User user, Authentication a) {
     public String getSignUpPage(Authentication a) {
         if (a != null && a.getName() != null) {
-            User user = userService.getOneUserByName(a.getName());
-            if (user.getRole().equals(Role.ADMIN)){
+//            User chat_user = userService.getOneUserByName(a.getName());
+            User chat_user = userService.getUserByEmail(a.getName());
+            if (chat_user.getRole().equals(Role.ADMIN)){
                 return "redirect:/admin/panel/halls";
             }
-            if (user.getRole().equals(Role.USER)){
+            if (chat_user.getRole().equals(Role.USER)){
                 return "redirect:/profile";
             }
         }
@@ -40,7 +45,21 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public String registerUser(@ModelAttribute("user") User user) {
+    public String registerUser(@Valid @ModelAttribute User user,
+                               BindingResult errors,
+                               Model model,
+                               HttpServletRequest request,
+                               HttpServletResponse response) {
+
+        if(errors.hasErrors()) {
+            errors.resolveMessageCodes("validation:");
+//            System.out.println("ERRORS:");
+//            System.out.println(errors.getAllErrors().get(0).getDefaultMessage());
+
+            model.addAttribute("error", errors.getAllErrors().get(0).getDefaultMessage());
+            return "/signUp";
+        }
+
         String tempPassword = user.getPassword();
         user.setPassword(passwordEncoder.encode(tempPassword));
         user.setAvatarId(0L);
@@ -53,7 +72,8 @@ public class UserController {
     @GetMapping("/signIn")
     public String getSignInPage(Authentication a, Model model) {
         if (a != null && a.getName() != null) {
-            User user = userService.getOneUserByName(a.getName());
+//            User user = userService.getOneUserByName(a.getName());
+            User user = userService.getUserByEmail(a.getName());
             if (user.getRole().equals(Role.ADMIN)){
                 return "redirect:/admin/panel/halls";
             }
