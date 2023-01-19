@@ -2,9 +2,11 @@ package edu.school21.cinema.controllers;
 
 import edu.school21.cinema.models.Role;
 import edu.school21.cinema.models.User;
+import edu.school21.cinema.services.UserRegistrationEvent;
 import edu.school21.cinema.services.UserService;
 import edu.school21.cinema.services.UserSessionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final UserSessionService userSessionService;
+
+    private final ApplicationEventPublisher eventPublisher;
 
     @GetMapping("/signUp")
 //    public String getSignUpPage(@ModelAttribute("user") User user, Authentication a) {
@@ -65,6 +69,8 @@ public class UserController {
         user.setAvatarId(0L);
         user.setRole(Role.USER);
         userService.saveUser(user);
+
+        eventPublisher.publishEvent(new UserRegistrationEvent(user));
 
         return "redirect:/login";
     }

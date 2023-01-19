@@ -2,11 +2,13 @@ package edu.school21.cinema.models;
 
 import edu.school21.cinema.validation.ValidPassword;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -50,4 +52,8 @@ public class User {
     @Column(name="role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(name="verification_id")
+    private String verificationId = UUID.randomUUID().toString();
+
 }

@@ -28,6 +28,8 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+
+
 //    public User getOneUserByName(String name) {
 //        List<User> users = userRepository.findAllByName(name);
 //        if (users == null || users.isEmpty())
@@ -62,4 +64,9 @@ public class UserService {
     public User findUserById(Long id) {
         return userRepository.findUserById(id);
     }
+
+    public User findUserByVerificationId(String verificationId) {
+        return userRepository.findUserByVerificationId(verificationId);
+    }
+
 }
