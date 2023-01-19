@@ -143,7 +143,7 @@
 
             function sendMessage() {
                 var message = {
-                    sender: "${user.name}",
+                    sender: "${user.email}",
                     text: document.getElementById('text').value,
                     movie: { id: ${movie.id}}
                 };
@@ -156,18 +156,18 @@
                 messageElement.className = 'bubbleWrapper';
 
                 var container = document.createElement('div');
-                if (messageSender === "${user.name}")
+                if (messageSender === "${user.email}")
                     container.className = 'inlineContainer own';
                 else
                     container.className = 'inlineContainer';
 
                 var usernameText = document.createElement('label');
                 usernameText.textContent = messageSender;
-                if (messageSender === "${user.name}")
+                if (messageSender === "${user.email}")
                     usernameText.hidden = true;
 
                 var textElement = document.createElement('div');
-                if (messageSender === "${user.name}")
+                if (messageSender === "${user.email}")
                     textElement.className = 'ownBubble own';
                 else
                     textElement.className = 'otherBubble other';
@@ -185,18 +185,18 @@
                 messageElement.className = 'bubbleWrapper';
 
                 var container = document.createElement('div');
-                if (message.sender === "${user.name}")
+                if (message.sender === "${user.email}")
                     container.className = 'inlineContainer own';
                 else
                     container.className = 'inlineContainer';
 
                 var usernameText = document.createElement('label');
                 usernameText.textContent = message.sender;
-                if (message.sender === "${user.name}")
+                if (message.sender === "${user.email}")
                     usernameText.hidden = true;
 
                 var textElement = document.createElement('div');
-                if (message.sender === "${user.name}")
+                if (message.sender === "${user.email}")
                     textElement.className = 'ownBubble own';
                 else
                     textElement.className = 'otherBubble other';

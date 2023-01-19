@@ -56,4 +56,6 @@ public class User {
     @Column(name="verification_id")
     private String verificationId = UUID.randomUUID().toString();
 
+    @Column(name="is_confirmed")
+    private Boolean confirmed = false;
 }

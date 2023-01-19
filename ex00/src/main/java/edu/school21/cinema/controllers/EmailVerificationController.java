@@ -34,8 +34,12 @@ public class EmailVerificationController {
 //			return "redirect:/user";
 //		}
 		User user = userService.findUserByVerificationId(uuid);
-		if (uuid.equals("1")){
+		System.out.println(uuid);
+		System.out.println(user.getVerificationId());
+		if (user != null && uuid.equals(user.getVerificationId())){
 			System.out.println("EMAIL are confirmed!");
+			user.setConfirmed(true);
+			userService.saveUser(user);
 			return "redirect:/";
 		}
 		return "redirect:/login";
